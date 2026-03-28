@@ -3,8 +3,6 @@ name: Python CI
 on:
   push:
     branches: ["main"]
-  pull_request:
-    branches: ["main"]
   workflow_dispatch:
 
 jobs:
@@ -22,13 +20,12 @@ jobs:
 
     - name: Instalar dependencias
       run: |
-        pip install -r requirements.txt
-        pip install flake8
+        pip install click flake8
 
-    - name: Análisis estático (flake8)
+    - name: Lint
       run: |
         flake8 .
 
-    - name: Ejecutar script (prueba básica)
+    - name: Ejecutar script
       run: |
         python main.py
